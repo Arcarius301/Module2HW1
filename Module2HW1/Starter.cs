@@ -5,29 +5,29 @@ namespace Module2HW1
 {
     public class Starter
     {
+        private Actions _actions = new Actions();
         public void Run()
         {
-            Random random = new Random();
-            Logger logger = Logger.Instance;
-            Actions actions = new Actions();
-            Result result = new Result();
+            var random = new Random();
+            var logger = Logger.Instance;
+            Result result = null;
 
-            for (int i = 1; i <= 100; i++)
+            for (int i = 0; i <= 100; i++)
             {
                 switch (random.Next(1, 4))
                 {
                     case 1:
-                        result = actions.FirstMethod();
+                        result = _actions.FirstMethod();
                         break;
                     case 2:
-                        result = actions.SecondMethod();
+                        result = _actions.SecondMethod();
                         break;
                     case 3:
-                        result = actions.ThirdMethod();
+                        result = _actions.ThirdMethod();
                         break;
                 }
 
-                if (result.Status.Equals(false))
+                if (!result.Status)
                 {
                     logger.LogInformation(EventLevel.Error, $"Action failed by a reason: {result.Message}");
                 }

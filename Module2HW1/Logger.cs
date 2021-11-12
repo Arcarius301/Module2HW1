@@ -5,7 +5,7 @@ namespace Module2HW1
 {
     public sealed class Logger
     {
-        private StringBuilder _buffer = new StringBuilder();
+        private readonly StringBuilder _buffer = new StringBuilder();
         private static readonly Logger _instance = new Logger();
         static Logger()
         {
@@ -25,7 +25,7 @@ namespace Module2HW1
 
         public void LogInformation(EventLevel level, string message)
         {
-            string stringBuffer = $"{DateTime.Now}: {level}: {message}";
+            string stringBuffer = $"{DateTime.UtcNow}: {level}: {message}";
             _buffer.AppendLine(stringBuffer);
             Console.WriteLine(stringBuffer);
         }
